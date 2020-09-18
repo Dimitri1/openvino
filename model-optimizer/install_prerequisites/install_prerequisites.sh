@@ -69,14 +69,16 @@ if [[ $DISTRO == "centos" ]]; then
         python_binary=python3.6
     fi
 elif [[ $DISTRO == "ubuntu" ]]; then
-    sudo -E apt update
-    sudo -E apt -y install python3-pip python3-venv libgfortran3
+    #sudo -E apt update
+    #sudo -E apt -y install python3-pip python3-venv libgfortran3
     python_binary=python3
 fi
 
 
 if [[ $V_ENV -eq 1 ]]; then
-    $python_binary -m venv $SCRIPTDIR/../venv
+    #$python_binary -m venv $SCRIPTDIR/../venv
+    virtualenv  --python=python3.6 $SCRIPTDIR/../venv
+
     source $SCRIPTDIR/../venv/bin/activate
     $SCRIPTDIR/../venv/bin/$python_binary -m pip install -r $SCRIPTDIR/../requirements${postfix}.txt
     echo
